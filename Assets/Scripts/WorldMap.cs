@@ -14,9 +14,11 @@ namespace OutworldMini
         private Camera gameCamera;
         private int wight;
         private CellData[,] cellMap;
-        
-        public event Action<CellData> CellSelected;
 
+        private CellData selectedCell;
+
+        public event Action<CellData> CellSelected;
+        public event Action PropertyiesCellUpdated;
         public WorldMap(Tilemap map,Tile tile,int w)
         {
             tilemap = map;
@@ -49,24 +51,24 @@ namespace OutworldMini
                 for(int j = 0;j<wight;j++)
                 {
                     cellMap[i,j].UpdateProperties();
+
                 }
+            }
+            PropertyiesCellUpdated?.Invoke();
+        }
+
+        public void SelectCell()
+        {
+            if(!UIExt.IsPointerOverUIElement())
+            {
+                Vector3 mouseWorldPos = gameCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3Int tilepos = tilemap.WorldToCell(mouseWorldPos);
+                selectedCell = cellMap[tilepos.x,tilepos.y];
+                CellSelected?.Invoke(selectedCell);
+                
             }
         }
 
-        public bool MouseInMap()
-        {
-            RaycastHit hit;
-            Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);
-        
-            if (Physics.Raycast(ray, out hit)) {
-            Debug.Log(hit.transform.name) ;
-            
-            // Do something with the object that was hit by the raycast.
-            }
-           
-            return false;
-        }
-    
     }
 }
 

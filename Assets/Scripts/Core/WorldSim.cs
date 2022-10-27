@@ -24,20 +24,21 @@ namespace OutworldMini
         public void Enter(SimpleStateMashine simpleStateMashine)
         {
 
-            sceneLoader.LoadScene(allScenes.WorlSimulation,InitScene);
+            sceneLoader.LoadScene(allScenes.WorlSimulation,InitWorlSimScene);
 
         }
 
-        private void InitScene()
+        private void InitWorlSimScene()
         {
             map = GameObject.FindObjectOfType<Map>();
             cameraMovement = GameObject.FindObjectOfType<CameraMovement>();
-
+            Debug.Log("Init");
             DebugLogExt.LogErrorIfNotFind(map,nameof(map));
             DebugLogExt.LogErrorIfNotFind(cameraMovement,nameof(cameraMovement));
             
             map.Init();
             cameraMovement.Init(new Rect(0,0,map.Wight,map.Wight));
+            
         }
 
         public void Exit(SimpleStateMashine simpleStateMashine)

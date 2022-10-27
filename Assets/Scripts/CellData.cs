@@ -18,12 +18,14 @@ namespace OutworldMini
         public int Army => army;
         public int IncomeWallet => incomeWallet;
         public int Resources => resources;
+        public int CountFood =>countFood;
         
         private int factories;
         private int population;
         private int army;
         private int incomeWallet;
         private int resources;
+        private int countFood;
 
         private IFuncPropertyDependecion factoriesDependecion;
         private IFuncPropertyDependecion populationDependecion;
@@ -50,7 +52,35 @@ namespace OutworldMini
         {
             populationDependecion = Dependecion;
         }
-
+        
+        public void ChangeArmy(int value)
+        {
+            if(army+value>=0)
+            {
+                army+=value;
+            }
+        }
+        public void ChangePopulation(int value)
+        {
+            if(population+value>=0)
+            {
+                population+=value;
+            }
+        }
+        public void ChangeFactories(int value)
+        {
+            if(factories+value>=0)
+            {
+                factories+=value;
+            }
+        }
+        public void ChangeFood(int value)
+        {
+            if(countFood+value>=0)
+            {
+                countFood+=value;
+            }
+        }
         public void UpdateProperties()
         {
             if (populationDependecion != null)
@@ -60,6 +90,10 @@ namespace OutworldMini
             if (factoriesDependecion != null)
             {
                 factories = factoriesDependecion.NextValue(factories);
+            }
+            if (armyDependecion!=null)
+            {
+                army = armyDependecion.NextValue(army);
             }
         }
 

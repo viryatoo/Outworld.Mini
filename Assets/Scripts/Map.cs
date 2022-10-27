@@ -13,6 +13,8 @@ namespace OutworldMini
         [SerializeField] private int wight;
         [HideInInspector] public int Wight => wight;
         private WorldMap worldMap;
+        public WorldMap WorldMap => worldMap;
+        
         public void Init()
         {
             worldMap = new WorldMap(tilemap,tilecell,wight);
@@ -23,8 +25,10 @@ namespace OutworldMini
         {
             if(Input.GetMouseButtonDown(0))
             {
-                worldMap.MouseInMap();
+                worldMap.SelectCell();
             }
         }
+
+        
     }
 }

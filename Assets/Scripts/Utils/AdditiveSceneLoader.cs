@@ -18,9 +18,13 @@ namespace OutworldMini
         private IEnumerator LoadCouroutine(string name, Action onLoaded)
         {
             AsyncOperation operation = SceneManager.LoadSceneAsync(name,LoadSceneMode.Additive);
+            operation.allowSceneActivation = false;
 
             while(operation.isDone==false)
             {
+                    
+
+                
                 yield return null;
             }
             onLoaded.Invoke();
