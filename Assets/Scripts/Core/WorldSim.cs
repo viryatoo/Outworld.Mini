@@ -10,8 +10,9 @@ namespace OutworldMini
     {
         private AllScenesSO allScenes;
         private Map map;
-        private CameraMovement cameraMovement;
 
+        private CellInfoPanel cellInfoPanel;
+        private CameraMovement cameraMovement;
         private AdditiveSceneLoader sceneLoader;
 
 
@@ -25,6 +26,7 @@ namespace OutworldMini
         {
 
             sceneLoader.LoadScene(allScenes.WorlSimulation,InitWorlSimScene);
+            sceneLoader.LoadScene(allScenes.UI,InitUI);
 
         }
 
@@ -35,10 +37,16 @@ namespace OutworldMini
             Debug.Log("Init");
             DebugLogExt.LogErrorIfNotFind(map,nameof(map));
             DebugLogExt.LogErrorIfNotFind(cameraMovement,nameof(cameraMovement));
-            
+
             map.Init();
             cameraMovement.Init(new Rect(0,0,map.Wight,map.Wight));
             
+        }
+
+        private void InitUI()
+        {
+            cellInfoPanel = GameObject.FindObjectOfType<CellInfoPanel>();
+            cellInfoPanel.Init(map);
         }
 
         public void Exit(SimpleStateMashine simpleStateMashine)

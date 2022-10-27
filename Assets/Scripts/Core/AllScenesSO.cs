@@ -7,10 +7,12 @@ namespace OutworldMini
         [SerializeField] private string starter;
         [SerializeField] private string coreScene;
         [SerializeField] private string worlSimulation;
+        [SerializeField] private string ui;
 
         public string Starter =>starter;
         public string  CoreScene =>coreScene;
         public string WorlSimulation =>worlSimulation;
+        public string UI=>ui;
     }
 }
 

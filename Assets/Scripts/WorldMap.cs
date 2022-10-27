@@ -40,7 +40,11 @@ namespace OutworldMini
                     tilemap.SetTile(pos, cellTile);
                     tilemap.SetTileFlags(pos, TileFlags.None);
                     tilemap.SetColor(pos,UnityEngine.Random.ColorHSV());
-                    cellMap[i, j] = new CellData(10, 100, 0, 0, 5000);
+                    cellMap[i, j] = new CellData(UnityEngine.Random.Range(0,10),
+                                                 UnityEngine.Random.Range(10,5000),
+                                                 UnityEngine.Random.Range(0,100),
+                                                 UnityEngine.Random.Range(1,6),
+                                                 UnityEngine.Random.Range(100,50000));
                 }
             }
         }

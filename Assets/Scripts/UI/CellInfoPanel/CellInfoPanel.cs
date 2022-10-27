@@ -10,23 +10,34 @@ namespace OutworldMini
         [SerializeField] private TMP_Text factoryies;
         [SerializeField] private TMP_Text resources;
         [SerializeField] private TMP_Text countfood;
-        [SerializeField] private Map map;
+
+        [SerializeField] private TMP_Text army;
+        private Map map;
 
         public void Init(Map gameMap)
         {
             map = gameMap;
+            map.WorldMap.CellSelected+=CellSelected;
+            map.WorldMap.PropertyiesCellUpdated+=UpdateText;
         }
 
         private CellData currentdata;
         private void OnEnable() 
         {
+            if(map!=null)
+            {
             map.WorldMap.CellSelected+=CellSelected;
             map.WorldMap.PropertyiesCellUpdated+=UpdateText;
+            }
+
         }
         private void OnDisable()
         {
+            if(map!=null)
+            {
             map.WorldMap.CellSelected-=CellSelected;
             map.WorldMap.PropertyiesCellUpdated-=UpdateText;
+            }
         }
 
         private void CellSelected(CellData data)
@@ -45,6 +56,7 @@ namespace OutworldMini
             factoryies.text = data.Factories.ToString();
             resources.text = data.Resources.ToString();
             countfood.text = data.CountFood.ToString();
+            army.text =  data.Army.ToString();
         }
     }
 }
