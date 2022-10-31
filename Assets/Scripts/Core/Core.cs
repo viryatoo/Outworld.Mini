@@ -10,13 +10,12 @@ namespace OutworldMini
         [SerializeField] private AllScenesSO allScenesSO;
         [SerializeField] private AdditiveSceneLoader sceneLoader;
         private SimpleStateMashine MainStateMashine;
-        private IState worldSimulation;
+        [SerializeReference] private IState worldSimulation;
 
         private void Awake()
         {
             MainStateMashine = new SimpleStateMashine();
-            worldSimulation = new WorldSim(allScenesSO,sceneLoader);
-            
+
             MainStateMashine.TransitionTo(worldSimulation);
         }
         

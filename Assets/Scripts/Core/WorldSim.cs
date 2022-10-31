@@ -6,47 +6,26 @@ using UnityEngine.Events;
 
 namespace OutworldMini
 {
+    [System.Serializable]
     public class WorldSim : IState
     {
-        private AllScenesSO allScenes;
-        private Map map;
-
-        private CellInfoPanel cellInfoPanel;
-        private CameraMovement cameraMovement;
-        private AdditiveSceneLoader sceneLoader;
-
-
-        public WorldSim(AllScenesSO scenes,AdditiveSceneLoader additiveSceneLoader)
-        {
-            allScenes = scenes;
-            sceneLoader = additiveSceneLoader;
-        }
+         [SerializeField] private AllScenesSO allScenes;
+        [SerializeField] private Map map;
+        [SerializeField] private CellInfoPanel cellInfoPanel;
+        [SerializeField] private CameraMovement cameraMovement;
+        [SerializeField] private AdditiveSceneLoader sceneLoader;
 
         public void Enter(SimpleStateMashine simpleStateMashine)
         {
-
-            sceneLoader.LoadScene(allScenes.WorlSimulation,InitWorlSimScene);
-            sceneLoader.LoadScene(allScenes.UI,InitUI);
-
+            Init();
         }
 
-        private void InitWorlSimScene()
+        private void Init()
         {
-            map = GameObject.FindObjectOfType<Map>();
-            cameraMovement = GameObject.FindObjectOfType<CameraMovement>();
-            Debug.Log("Init");
-            DebugLogExt.LogErrorIfNotFind(map,nameof(map));
-            DebugLogExt.LogErrorIfNotFind(cameraMovement,nameof(cameraMovement));
-
             map.Init();
             cameraMovement.Init(new Rect(0,0,map.Wight,map.Wight));
-            
-        }
-
-        private void InitUI()
-        {
-            cellInfoPanel = GameObject.FindObjectOfType<CellInfoPanel>();
             cellInfoPanel.Init(map);
+            
         }
 
         public void Exit(SimpleStateMashine simpleStateMashine)
