@@ -20,6 +20,10 @@ namespace OutworldMini
             worldMap = new WorldMap(tilemap,tilecell,wight);
         }
 
+        public void UpdateWorld()
+        {
+            worldMap.NexTick();
+        }
         // Update is called once per frame
         void Update()
         {

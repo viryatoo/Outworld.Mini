@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace OutworldMini
 {
-    public sealed class Core : MonoBehaviour
+    public sealed class Core : MonoBehaviour, ICorutineRunner
     {
 
         [SerializeField] private AllScenesSO allScenesSO;
         [SerializeField] private AdditiveSceneLoader sceneLoader;
+        [SerializeField] private WorldSim worldSimulation;
         private SimpleStateMashine MainStateMashine;
-        [SerializeReference] private IState worldSimulation;
-
         private void Awake()
         {
             MainStateMashine = new SimpleStateMashine();
-
+            worldSimulation.Init(this);
             MainStateMashine.TransitionTo(worldSimulation);
+            
         }
         
     }

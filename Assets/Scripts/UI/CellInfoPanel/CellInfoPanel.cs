@@ -17,26 +17,26 @@ namespace OutworldMini
         public void Init(Map gameMap)
         {
             map = gameMap;
-            map.WorldMap.CellSelected+=CellSelected;
-            map.WorldMap.PropertyiesCellUpdated+=UpdateText;
+            map.WorldMap.CellSelected += CellSelected;
+            map.WorldMap.PropertyiesCellUpdated += UpdateText;
         }
 
         private CellData currentdata;
-        private void OnEnable() 
+        private void OnEnable()
         {
-            if(map!=null)
+            if (map != null)
             {
-            map.WorldMap.CellSelected+=CellSelected;
-            map.WorldMap.PropertyiesCellUpdated+=UpdateText;
+                map.WorldMap.CellSelected += CellSelected;
+                map.WorldMap.PropertyiesCellUpdated += UpdateText;
             }
 
         }
         private void OnDisable()
         {
-            if(map!=null)
+            if (map != null)
             {
-            map.WorldMap.CellSelected-=CellSelected;
-            map.WorldMap.PropertyiesCellUpdated-=UpdateText;
+                map.WorldMap.CellSelected -= CellSelected;
+                map.WorldMap.PropertyiesCellUpdated -= UpdateText;
             }
         }
 
@@ -47,7 +47,11 @@ namespace OutworldMini
         }
         private void UpdateText()
         {
-            UpdateText(currentdata);
+            if (currentdata != null)
+            {
+                UpdateText(currentdata);
+            }
+;
         }
 
         private void UpdateText(CellData data)
@@ -56,7 +60,7 @@ namespace OutworldMini
             factoryies.text = data.Factories.ToString();
             resources.text = data.Resources.ToString();
             countfood.text = data.CountFood.ToString();
-            army.text =  data.Army.ToString();
+            army.text = data.Army.ToString();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace OutworldMini
                                          UnityEngine.Random.Range(100, 50000));
         }
 
-        private void NexTick()
+        public void NexTick()
         {
             for (int i = 0; i < wight; i++)
             {

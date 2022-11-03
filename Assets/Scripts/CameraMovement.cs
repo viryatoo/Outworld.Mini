@@ -10,7 +10,6 @@ namespace OutworldMini
         private bool isMouseButtonPressed;
         private Rect gameArea;
         private Camera gameCamera;
-
         [SerializeField] private float sensitivy;
         public void Init(Rect area)
         {
@@ -45,12 +44,6 @@ namespace OutworldMini
                 CalculateBounds();
                 
             }
-            
-
-            
-
-            
-
         }
 
         private void CalculateBounds()
