@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,14 +11,23 @@ namespace OutworldMini
 
         [SerializeField] private Tilemap tilemap;
         [SerializeField] private Tile tilecell;
+
+        [SerializeField] BordersBuilder bordersBuilder;
         [SerializeField] private int wight;
-        [HideInInspector] public int Wight => wight;
+        public int Wight => wight;
         private WorldMap worldMap;
         public WorldMap WorldMap => worldMap;
         
         public void Init()
         {
             worldMap = new WorldMap(tilemap,tilecell,wight);
+            bordersBuilder.Init(wight);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            worldMap.CalculateCountryBorders(bordersBuilder);
+            stopwatch.Stop();
+            UnityEngine.Debug.Log("Время на расчёет границы:" + stopwatch.ElapsedMilliseconds.ToString());
+
         }
 
         public void UpdateWorld()

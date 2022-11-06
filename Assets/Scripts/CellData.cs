@@ -19,6 +19,9 @@ namespace OutworldMini
         public int IncomeWallet => incomeWallet;
         public int Resources => resources;
         public int CountFood =>countFood;
+        public Vector3Int WorldPosition => worldPosition;
+
+        private Vector3Int worldPosition;
         
         private int factories;
         private int population;
@@ -31,13 +34,14 @@ namespace OutworldMini
         private IFuncPropertyDependecion populationDependecion;
         private IFuncPropertyDependecion armyDependecion;
 
-        public CellData(int fact, int pop, int arm, int wallet, int res)
+        public CellData(Vector3Int pos,int fact, int pop, int arm, int wallet, int res)
         {
             factories = fact;
             population = pop;
             army = arm;
             incomeWallet = wallet;
             resources = res;
+            worldPosition = pos;
         }
 
         public void SetArmyDependecion(IFuncPropertyDependecion Dependecion)
