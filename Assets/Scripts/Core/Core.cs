@@ -13,6 +13,7 @@ namespace OutworldMini
         private SimpleStateMashine MainStateMashine;
         private void Awake()
         {
+
             MainStateMashine = new SimpleStateMashine();
             worldSimulation.Init(this);
             MainStateMashine.TransitionTo(worldSimulation);

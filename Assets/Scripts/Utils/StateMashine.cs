@@ -24,12 +24,12 @@ namespace OutworldMini
         public void UpdateState()
         {
             if (currentState != null)
-                currentState.Update(this);
+                currentState.UpdateState(this);
         }
         public void LateUpdateState()
         {
             if (currentState != null)
-                currentState.Update(this);
+                currentState.LateUpdateState(this);
         }
     }
 }

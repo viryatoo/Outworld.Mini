@@ -9,7 +9,7 @@ namespace OutworldMini
     {
         [SerializeField]
         private readonly string NEXT_SCENE;
-
+        
         private void Awake()
         {
             SceneManager.LoadScene(NEXT_SCENE);

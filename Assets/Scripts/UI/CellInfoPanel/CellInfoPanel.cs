@@ -10,7 +10,6 @@ namespace OutworldMini
         [SerializeField] private TMP_Text factoryies;
         [SerializeField] private TMP_Text resources;
         [SerializeField] private TMP_Text countfood;
-
         [SerializeField] private TMP_Text army;
         private Map map;
 

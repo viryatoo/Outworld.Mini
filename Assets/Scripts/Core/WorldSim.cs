@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace OutworldMini
 {
     [System.Serializable]
-    public class WorldSim : IState
+    public class WorldSim :MonoBehaviour, IState
     {
         [SerializeField] private AllScenesSO allScenes;
         [SerializeField] private Map map;
@@ -24,11 +24,11 @@ namespace OutworldMini
 
         public void Enter(SimpleStateMashine simpleStateMashine)
         {
-            Init();
+            InitComponents();
             corutineRunner.StartCoroutine(Tick());
         }
 
-        private void Init()
+        private void InitComponents()
         {
             map.Init();
             cameraMovement.Init(new Rect(0,0,map.Wight,map.Wight));
@@ -51,12 +51,12 @@ namespace OutworldMini
 
         }
 
-        public void LateUpdate(SimpleStateMashine simpleStateMashine)
+        public void LateUpdateState(SimpleStateMashine simpleStateMashine)
         {
 
         }
 
-        public void Update(SimpleStateMashine simpleStateMashine)
+        public void UpdateState(SimpleStateMashine simpleStateMashine)
         {
 
         }

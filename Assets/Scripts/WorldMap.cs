@@ -108,6 +108,7 @@ namespace OutworldMini
 
             }
         }
+      
         private bool CheckOutOfRangeArray(int x, int y)
         {
             if (x >= 0 && x < wight && y >= 0 && y < wight)
