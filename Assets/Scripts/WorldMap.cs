@@ -12,14 +12,20 @@ namespace OutworldMini
         public event Action<CellData> CellSelected;
         public event Action PropertyiesCellUpdated;
 
+
         private Tile cellTile;
         private Tilemap tilemap;
         private Camera gameCamera;
         private int wight;
         private CellData[,] cellMap;
         private CellData selectedCell;
-
         private List<WCountry> countryies;
+        /*
+        TODO: 
+        - Доделать апдеётеров. Чтобы каждый апдейтер отвечал за определённый слой абстракции.
+        - Придумать как инитить WorldData в ячейки (Может что то в иде провайдера бахнуть)
+        */
+        private List<IMapUpdater> mapUpdaters;
 
 
         public WorldMap(Tilemap map, Tile tile, int w)
@@ -47,15 +53,7 @@ namespace OutworldMini
 
         public void NexTick()
         {
-            for (int i = 0; i < wight; i++)
-            {
-                for (int j = 0; j < wight; j++)
-                {
-                    cellMap[i, j].UpdateProperties();
 
-                }
-            }
-            PropertyiesCellUpdated?.Invoke();
         }
 
         public void SelectCell()

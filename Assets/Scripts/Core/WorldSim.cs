@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace OutworldMini
 {
     [System.Serializable]
-    public class WorldSim :MonoBehaviour, IState
+    public class WorldSim : MonoBehaviour, IState
     {
         [SerializeField] private AllScenesSO allScenes;
         [SerializeField] private Map map;

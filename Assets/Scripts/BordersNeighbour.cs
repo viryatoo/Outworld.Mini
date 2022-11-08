@@ -1,3 +1,4 @@
+
 namespace OutworldMini
 {
     public struct BordersNeighbour

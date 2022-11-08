@@ -30,10 +30,6 @@ namespace OutworldMini
         private int resources;
         private int countFood;
 
-        private IFuncPropertyDependecion factoriesDependecion;
-        private IFuncPropertyDependecion populationDependecion;
-        private IFuncPropertyDependecion armyDependecion;
-
         public CellData(Vector3Int pos,int fact, int pop, int arm, int wallet, int res)
         {
             factories = fact;
@@ -44,19 +40,6 @@ namespace OutworldMini
             worldPosition = pos;
         }
 
-        public void SetArmyDependecion(IFuncPropertyDependecion Dependecion)
-        {
-            armyDependecion = Dependecion;
-        }
-        public void SetFactoriesDependecion(IFuncPropertyDependecion Dependecion)
-        {
-            factoriesDependecion = Dependecion;
-        }
-        public void SetPopulationDependecion(IFuncPropertyDependecion Dependecion)
-        {
-            populationDependecion = Dependecion;
-        }
-        
         public void ChangeArmy(int value)
         {
             if(army+value>=0)
@@ -85,21 +68,7 @@ namespace OutworldMini
                 countFood+=value;
             }
         }
-        public void UpdateProperties()
-        {
-            if (populationDependecion != null)
-            {
-                population = populationDependecion.NextValue(population);
-            }
-            if (factoriesDependecion != null)
-            {
-                factories = factoriesDependecion.NextValue(factories);
-            }
-            if (armyDependecion!=null)
-            {
-                army = armyDependecion.NextValue(army);
-            }
-        }
+        
 
     }
 }

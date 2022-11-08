@@ -7,7 +7,6 @@ namespace OutworldMini
 {
     public class WCountry
     {
-
         public int ID => id;
         public Color CountryColor => countryColor;
         public event Action BordersChanged;
