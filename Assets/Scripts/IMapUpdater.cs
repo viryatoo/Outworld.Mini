@@ -1,6 +1,6 @@
 namespace OutworldMini
 {
-    internal interface IMapUpdater
+    public interface IMapUpdater
     {
           void UpdateLayer();
     }

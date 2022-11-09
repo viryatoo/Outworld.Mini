@@ -46,12 +46,20 @@ namespace OutworldMini
             {
                 army+=value;
             }
+            else
+            {
+                army = 0;
+            }
         }
         public void ChangePopulation(int value)
         {
             if(population+value>=0)
             {
                 population+=value;
+            }
+            else
+            {
+                population = 0;
             }
         }
         public void ChangeFactories(int value)
@@ -60,6 +68,10 @@ namespace OutworldMini
             {
                 factories+=value;
             }
+            else
+            {
+                factories = 0;
+            }
         }
         public void ChangeFood(int value)
         {
@@ -67,8 +79,24 @@ namespace OutworldMini
             {
                 countFood+=value;
             }
+            else
+            {
+                countFood = 0;
+            }
+        }
+        public void ChangeResoucres(int value)
+        {
+            if(resources+value>=0)
+            {
+                resources+=value;
+            }
+            else
+            {
+                resources = 0;
+            }
         }
         
+
 
     }
 }

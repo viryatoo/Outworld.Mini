@@ -11,7 +11,8 @@ namespace OutworldMini
 
         public event Action<CellData> CellSelected;
         public event Action PropertyiesCellUpdated;
-
+        public CellData[,] CellMap =>cellMap;
+        
 
         private Tile cellTile;
         private Tilemap tilemap;
@@ -28,6 +29,7 @@ namespace OutworldMini
         private List<IMapUpdater> mapUpdaters;
 
 
+
         public WorldMap(Tilemap map, Tile tile, int w)
         {
             tilemap = map;
@@ -35,25 +37,24 @@ namespace OutworldMini
             gameCamera = Camera.main;
             wight = w;
             countryies = new List<WCountry>();
+            mapUpdaters = new List<IMapUpdater>();
             GenerateWorld(12);
         }
-
-
-        private void InitCell(int x, int y)
+        public void AddUpdater(IMapUpdater updater)
         {
-            tilemap.SetTileFlags(new Vector3Int(x, y, 0), TileFlags.None);
-            tilemap.SetTile(new Vector3Int(x, y, 0), cellTile);
-            cellMap[x, y] = new CellData(new Vector3Int(x, y, 0),
-                                         UnityEngine.Random.Range(0, 10),
-                                         UnityEngine.Random.Range(10, 5000),
-                                         UnityEngine.Random.Range(0, 100),
-                                         UnityEngine.Random.Range(1, 6),
-                                         UnityEngine.Random.Range(100, 50000));
+            mapUpdaters.Add(updater);
         }
-
+        public void RemoveUpdater(IMapUpdater updater)
+        {
+            mapUpdaters.Remove(updater);
+        }
         public void NexTick()
         {
-
+            foreach(var updater in mapUpdaters)
+            {
+                updater.UpdateLayer();
+            }
+            PropertyiesCellUpdated?.Invoke();
         }
 
         public void SelectCell()
@@ -91,7 +92,18 @@ namespace OutworldMini
                 }
             }
         }
-
+       
+        private void InitCell(int x, int y)
+        {
+            tilemap.SetTileFlags(new Vector3Int(x, y, 0), TileFlags.None);
+            tilemap.SetTile(new Vector3Int(x, y, 0), cellTile);
+            cellMap[x, y] = new CellData(new Vector3Int(x, y, 0),
+                                         UnityEngine.Random.Range(0, 10),
+                                         UnityEngine.Random.Range(10, 5000),
+                                         UnityEngine.Random.Range(0, 100),
+                                         UnityEngine.Random.Range(1, 6),
+                                         UnityEngine.Random.Range(100, 50000));
+        }
         private void GenerateWorld(int totalCountryies, bool fillFullArea = false)
         {
             cellMap = new CellData[wight, wight];

@@ -7,10 +7,10 @@ namespace OutworldMini.SOdata
     {
         [Header("Constants")]
         public float MAccelerationPopulation;
-
         [Range(0,1)]
         public float MAccelerationResources = 0.9999f ;
-
+        public float MFoodPerPerson;
+        public float MResourcesPerPerson;
         public CountryParameters CountryParameters;
     }
 

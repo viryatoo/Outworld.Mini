@@ -874,6 +874,7 @@ MonoBehaviour:
   tilecell: {fileID: 11400000, guid: c335d846f7928364b933d8eae47896ca, type: 2}
   bordersBuilder: {fileID: 1707742586}
   wight: 32
+  worldData: {fileID: 11400000, guid: 1012c0f4cbbee5848b2aead3a3b5c729, type: 2}
 --- !u!4 &1742861533
 Transform:
   m_ObjectHideFlags: 0

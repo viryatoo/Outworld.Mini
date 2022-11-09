@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b5c13c208d4d44bca8865caaea3ed, type: 3}
   m_Name: WorldData
   m_EditorClassIdentifier: 
-  MAccelerationPopulation: 0
-  MAccelerationResources: 0.9999
+  MAccelerationPopulation: 1.012
+  MAccelerationResources: 0.999
+  MFoodPerPerson: 2
+  MResourcesPerPerson: 0.01
   CountryParameters:
     MInfluenceArmyToPopulation: 1
     MInfluenceHappinessToPopulation: 1
