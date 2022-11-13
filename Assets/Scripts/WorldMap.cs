@@ -102,7 +102,8 @@ namespace OutworldMini
                                          UnityEngine.Random.Range(10, 5000),
                                          UnityEngine.Random.Range(0, 100),
                                          UnityEngine.Random.Range(1, 6),
-                                         UnityEngine.Random.Range(100, 50000));
+                                         UnityEngine.Random.Range(100, 50000)
+                                         );
         }
         private void GenerateWorld(int totalCountryies, bool fillFullArea = false)
         {

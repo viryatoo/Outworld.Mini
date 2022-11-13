@@ -31,7 +31,6 @@ namespace OutworldMini
         {
             cells.Remove(cell);
         }
-
         public bool HasCell(CellData cell)
         {
             return cells.Contains(cell);

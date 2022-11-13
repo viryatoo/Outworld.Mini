@@ -11,6 +11,7 @@ namespace OutworldMini
         [SerializeField] private TMP_Text resources;
         [SerializeField] private TMP_Text countfood;
         [SerializeField] private TMP_Text army;
+        [SerializeField] private TMP_Text wallet;
         private Map map;
 
         public void Init(Map gameMap)
@@ -60,6 +61,7 @@ namespace OutworldMini
             resources.text = data.Resources.ToString();
             countfood.text = data.CountFood.ToString();
             army.text = data.Army.ToString();
+            wallet.text = data.IncomeWallet.ToString();
         }
     }
 }
