@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using OutworldMini.MainLevel.Views;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using OutworldMini.SOdata;
@@ -9,43 +10,34 @@ namespace OutworldMini
 {
     public class Map : MonoBehaviour
     {
-
-        [SerializeField] private Tilemap tilemap;
-        [SerializeField] private Tile tilecell;
+        public int WorldWight => worldData.worldWight;
+        public WorldMap WorldMap { get; private set; }
+        
+        [SerializeField] private MapView mapView;
         [SerializeField] private BordersBuilder bordersBuilder;
-        [SerializeField] private int wight;
-
         [SerializeField] private WorldData worldData;
-        public int Wight => wight;
-        private WorldMap worldMap;
-        public WorldMap WorldMap => worldMap;
         
         public void Init()
         {
-            worldMap = new WorldMap(tilemap,tilecell,wight);
-            IMapUpdater worldMapUpdtaer = new WorldMapUpdater(worldMap.CellMap,wight,worldData);
-            worldMap.AddUpdater(worldMapUpdtaer);
-            bordersBuilder.Init(wight);
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            worldMap.CalculateCountryBorders(bordersBuilder);
-            stopwatch.Stop();
-            UnityEngine.Debug.Log("Время на расчёет границы:" + stopwatch.ElapsedMilliseconds.ToString());
+            WorldMap = new WorldMap(mapView,worldData.worldWight);
+            IMapUpdater worldMapUpdater = new WorldMapUpdater(WorldMap.CellMap,worldData.worldWight,worldData);
+            WorldMap.AddUpdater(worldMapUpdater);
+            bordersBuilder.Init(worldData.worldWight);
+            WorldMap.CalculateCountryBorders(bordersBuilder);
         }
 
         public void UpdateWorld()
         {
-            worldMap.NexTick();
+            WorldMap.NexTick();
         }
         // Update is called once per frame
         void Update()
         {
             if(Input.GetMouseButtonDown(0))
             {
-                worldMap.SelectCell();
+                WorldMap.SelectCell();
             }
         }
-
         
     }
 }

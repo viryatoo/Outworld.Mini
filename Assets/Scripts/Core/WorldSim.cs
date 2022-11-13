@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using OutworldMini.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace OutworldMini
 {
@@ -14,31 +16,31 @@ namespace OutworldMini
         [SerializeField] private CellInfoPanel cellInfoPanel;
         [SerializeField] private CameraMovement cameraMovement;
         [SerializeField] private AdditiveSceneLoader sceneLoader;
-        [SerializeField] private int SecondsPerMove;
-        private ICorutineRunner corutineRunner;
-
+        [FormerlySerializedAs("SecondsPerMove")] [SerializeField] private int secondsPerMove;
+        private ICorutineRunner coroutineRunner;
+        
         public void Init(ICorutineRunner runner)
         {
-            corutineRunner = runner;
+            coroutineRunner = runner;
         }
 
-        public void Enter(SimpleStateMashine simpleStateMashine)
+        public void Enter(SimpleStateMachine simpleStateMachine)
         {
             InitComponents();
-            corutineRunner.StartCoroutine(Tick());
+            coroutineRunner.StartCoroutine(Tick());
         }
 
         private void InitComponents()
         {
             map.Init();
-            cameraMovement.Init(new Rect(0,0,map.Wight,map.Wight));
+            cameraMovement.Init(new Rect(0,0,map.WorldWight,map.WorldWight));
             cellInfoPanel.Init(map);
             
         }
 
-        public void Exit(SimpleStateMashine simpleStateMashine)
+        public void Exit(SimpleStateMachine simpleStateMachine)
         {
-            corutineRunner.StopCoroutine(Tick());
+            coroutineRunner.StopCoroutine(Tick());
         }
 
         private IEnumerator Tick()
@@ -46,17 +48,17 @@ namespace OutworldMini
             while(true)
             {
                 map.UpdateWorld();
-                yield return new WaitForSeconds(SecondsPerMove);
+                yield return new WaitForSeconds(secondsPerMove);
             }
 
         }
 
-        public void LateUpdateState(SimpleStateMashine simpleStateMashine)
+        public void LateUpdateState(SimpleStateMachine simpleStateMachine)
         {
 
         }
 
-        public void UpdateState(SimpleStateMashine simpleStateMashine)
+        public void UpdateState(SimpleStateMachine simpleStateMachine)
         {
 
         }

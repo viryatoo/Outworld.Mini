@@ -1,9 +1,10 @@
 using OutworldMini.SOdata;
+using OutworldMini.SOData;
 
 namespace OutworldMini.Services
 {
     public interface IStaticDataProvider
     {
-        WorldData GetWorldData();
+        public LevelData LoadLevel(string path);
     }
 }

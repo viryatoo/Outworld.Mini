@@ -32,9 +32,9 @@ namespace OutworldMini
                     float deltaPopulation;
                     float deltaFood;
                     float deltaResources;
-                    deltaFood = cell.Population * wordlData.MFoodPerPerson * NEGATIVE;
-                    deltaPopulation = (cell.Population * wordlData.MAccelerationPopulation) - cell.Population;
-                    deltaResources = cell.Population * wordlData.MResourcesPerPerson * NEGATIVE;
+                    deltaFood = cell.Population * wordlData.mFoodPerPerson * NEGATIVE;
+                    deltaPopulation = (cell.Population * wordlData.mAccelerationPopulation) - cell.Population;
+                    deltaResources = cell.Population * wordlData.mResourcesPerPerson * NEGATIVE;
                     gameCells[i, j].ChangePopulation((int)deltaPopulation);
                     gameCells[i, j].ChangeFood((int)deltaFood);
                     gameCells[i, j].ChangeResoucres((int)deltaResources);

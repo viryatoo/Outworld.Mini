@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using OutworldMini.Core.States;
+using OutworldMini.Core.Containers;
 using UnityEngine;
 
-namespace OutworldMini
+namespace OutworldMini.Core
 {
     public sealed class Core : MonoBehaviour, ICorutineRunner
     {
-
-        [SerializeField] private AllScenesSO allScenesSO;
-        [SerializeField] private AdditiveSceneLoader sceneLoader;
-        [SerializeField] private WorldSim worldSimulation;
-        private SimpleStateMashine MainStateMashine;
-        private void Awake()
-        {
-
-            MainStateMashine = new SimpleStateMashine();
-            worldSimulation.Init(this);
-            MainStateMashine.TransitionTo(worldSimulation);
-            
-        }
+        private SimpleStateMachine mainStateMachine;
+        private Container container;
         
+        public void Init()
+        {
+            container = new Containers.Container();
+            mainStateMachine = new SimpleStateMachine(new InitializeState(container));
+            DontDestroyOnLoad(this);
+        }
+
+        private void Update()
+        {
+            mainStateMachine.UpdateState();
+        }
     }
 }
 

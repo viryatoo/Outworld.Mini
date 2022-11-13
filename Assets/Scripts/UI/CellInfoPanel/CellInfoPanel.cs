@@ -18,7 +18,7 @@ namespace OutworldMini
         {
             map = gameMap;
             map.WorldMap.CellSelected += CellSelected;
-            map.WorldMap.PropertyiesCellUpdated += UpdateText;
+            map.WorldMap.PropertiesCellUpdated += UpdateText;
         }
 
         private CellData currentdata;
@@ -27,7 +27,7 @@ namespace OutworldMini
             if (map != null)
             {
                 map.WorldMap.CellSelected += CellSelected;
-                map.WorldMap.PropertyiesCellUpdated += UpdateText;
+                map.WorldMap.PropertiesCellUpdated += UpdateText;
             }
 
         }
@@ -36,7 +36,7 @@ namespace OutworldMini
             if (map != null)
             {
                 map.WorldMap.CellSelected -= CellSelected;
-                map.WorldMap.PropertyiesCellUpdated -= UpdateText;
+                map.WorldMap.PropertiesCellUpdated -= UpdateText;
             }
         }
 

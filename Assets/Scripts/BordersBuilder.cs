@@ -6,26 +6,27 @@ namespace OutworldMini
 {
     public class BordersBuilder : MonoBehaviour
     {
-        [SerializeField] private BorderCell prefab;
+        private BorderCell prefab;
         private BorderCell[,] borderCells;
 
-        public void Init(int Wight)
+        public void SetCellPrefab(BorderCell bc)
         {
-            borderCells = new BorderCell[Wight, Wight];
-            for (int i = 0; i < Wight; i++)
+            prefab = bc;
+        }
+        public void Init(int wight)
+        {
+            borderCells = new BorderCell[wight, wight];
+            for (int i = 0; i < wight; i++)
             {
-                for (int j = 0; j < Wight; j++)
+                for (int j = 0; j < wight; j++)
                 {
-                    BorderCell border = Instantiate(prefab, new Vector3(i, j, 0), Quaternion.identity, transform);
+                    BorderCell border = GameObject.Instantiate(prefab, new Vector3(i, j, 0), Quaternion.identity, transform);
                     border.Init();
                     borderCells[i, j] = border;
                 }
             }
         }
-
-
-
-        public void CalcualateBordersForCell(int x, int y, BordersNeighbour neighbour)
+        public void CalculateBordersForCell(int x, int y, BordersNeighbour neighbour)
         {
             borderCells[x, y].SetBorderCell(neighbour);
         }
