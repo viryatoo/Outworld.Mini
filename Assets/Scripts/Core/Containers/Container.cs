@@ -5,7 +5,7 @@ namespace OutworldMini.Core.Containers
 {
     public class Container : IContainer
     {
-        private Dictionary<Type, object> registeredObj;
+        private readonly Dictionary<Type, object> registeredObj;
 
         public Container()
         {

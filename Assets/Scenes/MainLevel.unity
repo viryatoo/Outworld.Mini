@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 452705977}
   - component: {fileID: 452705976}
   - component: {fileID: 452705975}
+  - component: {fileID: 452705978}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -375,6 +376,19 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &452705978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452705971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7086459c893842f9a887e2f4ce5be60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileCell: {fileID: 11400000, guid: c335d846f7928364b933d8eae47896ca, type: 2}
 --- !u!1 &610133829
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,9 +516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87da0d2fe633914f867fec56b268067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allScenesSO: {fileID: 11400000, guid: 7f7a59548c5273e4f9dd32d0c4c9e302, type: 2}
-  sceneLoader: {fileID: 304641026}
-  worldSimulation: {fileID: 1030171218}
 --- !u!4 &822798463
 Transform:
   m_ObjectHideFlags: 0
@@ -670,8 +681,7 @@ MonoBehaviour:
   map: {fileID: 1742861532}
   cellInfoPanel: {fileID: 843959109}
   cameraMovement: {fileID: 610133833}
-  sceneLoader: {fileID: 304641026}
-  SecondsPerMove: 2
+  secondsPerMove: 2
 --- !u!4 &1030171219
 Transform:
   m_ObjectHideFlags: 0
@@ -844,7 +854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba2cbd53a5f81841917125f8e5e7c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 9198093584202726397, guid: afd9aaa34d8330344abe8a8deeb58776, type: 3}
 --- !u!1 &1742861531
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,10 +883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a74f7ea9090bb4d97a7ace334fade8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 452705972}
-  tilecell: {fileID: 11400000, guid: c335d846f7928364b933d8eae47896ca, type: 2}
+  mapView: {fileID: 0}
   bordersBuilder: {fileID: 1707742586}
-  wight: 32
   worldData: {fileID: 11400000, guid: 1012c0f4cbbee5848b2aead3a3b5c729, type: 2}
 --- !u!4 &1742861533
 Transform:

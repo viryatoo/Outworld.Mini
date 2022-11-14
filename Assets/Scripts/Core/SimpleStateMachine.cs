@@ -1,21 +1,26 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using OutworldMini.Core.Containers;
+using OutworldMini.Core.States;
+
 namespace OutworldMini.Core
 {
     public class SimpleStateMachine
     {
         private IState currentState;
-
-        public SimpleStateMachine(IState state)
+        private readonly Dictionary<Type, IState> states;
+        
+        public SimpleStateMachine(IContainer container, Dictionary<Type, IState> gameStates)
         {
-            currentState = state;
-            state.Enter(this);
+            states = gameStates;
         }
 
-        public void TransitionTo(IState state)
+        public void TransitionTo<TType>()
         {
             currentState.Exit(this);
 
-            currentState = state;
+            currentState = states[typeof(TType)];
             currentState.Enter(this);
         }
         public void UpdateState()

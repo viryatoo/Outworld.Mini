@@ -4,14 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using OutworldMini.SOdata;
 using OutworldMini.SOData;
+using UnityEngine;
 
 namespace OutworldMini.Services
 {
     public class StaticDataProvider : IStaticDataProvider
     {
-        public LevelData LoadLevel(string path)
+        public LevelData GetLevelData(string path)
+        { 
+            return ScriptableObject.CreateInstance<LevelData>();
+        }
+        
+        public WorldData GetWorldData(string path)
         {
-            throw new NotImplementedException();
+            return ScriptableObject.CreateInstance<WorldData>();
         }
     }
 }

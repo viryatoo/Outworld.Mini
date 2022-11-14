@@ -1,33 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 
-namespace OutworldMini
+namespace OutworldMini.Utils
 {
-
-    public class AdditiveSceneLoader : MonoBehaviour
+    public class AdditiveSceneLoader : ISceneLoader
     {
-
-        public void LoadScene(string name, Action onLoaded)
+        private ICorutineRunner coroutineRunner;
+        public void LoadScene(string name, Action onLoaded = null)
         {
-            StartCoroutine(LoadCouroutine(name,onLoaded));
+            coroutineRunner.StartCoroutine(LoadCoroutine(name,onLoaded));
         }
-        private IEnumerator LoadCouroutine(string name, Action onLoaded)
+        private static IEnumerator LoadCoroutine(string name, Action onLoaded)
         {
             AsyncOperation operation = SceneManager.LoadSceneAsync(name,LoadSceneMode.Single);
             operation.allowSceneActivation = true;
 
             while(operation.isDone==false)
             {
-                    
 
-                
                 yield return null;
             }
-            onLoaded.Invoke();
+
+            onLoaded?.Invoke();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace OutworldMini
         
         public void Init()
         {
+            mapView.Init();
             WorldMap = new WorldMap(mapView,worldData.worldWight);
             IMapUpdater worldMapUpdater = new WorldMapUpdater(WorldMap.CellMap,worldData.worldWight,worldData);
             WorldMap.AddUpdater(worldMapUpdater);

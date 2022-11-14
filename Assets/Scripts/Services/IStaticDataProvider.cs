@@ -5,6 +5,8 @@ namespace OutworldMini.Services
 {
     public interface IStaticDataProvider
     {
-        public LevelData LoadLevel(string path);
+        public LevelData GetLevelData(string path);
+
+        public WorldData GetWorldData(string path);
     }
 }

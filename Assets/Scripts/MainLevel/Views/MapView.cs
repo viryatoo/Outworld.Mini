@@ -9,10 +9,9 @@ namespace OutworldMini.MainLevel.Views
         private Tilemap tilemap;
         private readonly Camera gameCamera;
         
-        public void Init(Tile tilePrefab)
+        public void Init()
         {
             tilemap = GetComponent<Tilemap>();
-            tileCell = tilePrefab;
         }
 
         public void SetTileColor(Vector3Int pos, Color color)
@@ -26,7 +25,7 @@ namespace OutworldMini.MainLevel.Views
             tilemap.SetTileFlags(pos, TileFlags.None);
             tilemap.SetTile(pos, tileCell);
         }
-
+        
         public Vector3Int GetTilePositionFromMousePosition()
         {
             Vector3 mouseWorldPos = gameCamera.ScreenToWorldPoint(Input.mousePosition);

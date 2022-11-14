@@ -1,17 +1,25 @@
-﻿namespace OutworldMini.Core.States
+﻿using OutworldMini.Core.Containers;
+using OutworldMini.Services;
+using OutworldMini.Utils;
+
+namespace OutworldMini.Core.States
 {
     public class InitializeState: IState
     {
-        private Containers.Container container;
-        
-        public InitializeState(Containers.Container coreContainer)
+        private const string nextLevel = "MainLevel";
+        private readonly IContainer container;
+        private SimpleStateMachine sm;
+        public InitializeState(IContainer coreContainer)
         {
             container = coreContainer;
+            RegisterServices();
         }
         
         public void Enter(SimpleStateMachine simpleStateMachine)
         {
-            RegisterServices();
+            sm = simpleStateMachine;
+            container.GetSingle<ISceneLoader>().LoadScene(nextLevel);
+            
         }
 
         public void LateUpdateState(SimpleStateMachine simpleStateMachine)
@@ -31,7 +39,13 @@
 
         private void RegisterServices()
         {
-            
+            container.RegisterSingle<ISceneLoader>(new AdditiveSceneLoader());
+            container.RegisterSingle<IStaticDataProvider>(new StaticDataProvider());
+        }
+
+        private void OnLevelLoaded()
+        {
+            sm.TransitionTo<WorldState>();
         }
     }
 }
